@@ -1,21 +1,17 @@
-package zerobase.dividend.model;
+package zerobase.dividend.persist.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Builder
 @Getter
 @ToString
 @NoArgsConstructor
@@ -29,9 +25,11 @@ public class MemberEntity implements UserDetails {
 
     private String username;
 
+    @JsonIgnore // 직렬화, 역직렬화 무시
     private String password;
 
     // 권한
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles;
 
     @Override

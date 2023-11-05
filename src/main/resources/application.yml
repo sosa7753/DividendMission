@@ -1,1 +1,32 @@
+spring:
+  application:
+    name : dividend
 
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+      use-new-id-generator-mappings: false
+    show-sql: true
+    defer-datasource-initialization: true
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:dividend;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+
+  redis:
+    host: localhost
+    port: 6379
+
+  jwt:
+    secret: emVyb2Jhc2Utc3ByaW5nLWJvb3QtZGl2aWRlbmQtcHJvamVjdC10dXRvcmlhbC1qd3Qtc2VjcmV0LWtleQo=
+
+scheduler:
+  scrap:
+    yahoo: "0 0 0 * * *"

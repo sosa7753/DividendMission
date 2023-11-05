@@ -1,2 +1,6 @@
-package zerobase.dividend.model.constants;public class Authority {
+package zerobase.dividend.model.constants;
+
+public enum Authority {
+    ROLE_READ,
+    ROLE_WRITE;
 }
